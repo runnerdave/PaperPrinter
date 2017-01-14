@@ -25,11 +25,12 @@ The application should:
   
   Does not allow to print a one page as double side, it defaults to single side.
   
-  To extend the solution to other sizes add 
+  To extend the solution to other sizes modify PrintJobFactry create method to receive the new size from
+  the PaperSize enumeration and edit the PrintJobsReader to accept a new column per row from the input file.
     
 #Build
   With maven installed simply run: __mvn clean package__
   
 #Run
-  run the following command: __java -jar target/printing-strategy-jar-with-dependencies.jar__
+  run the following command: __java -jar target/PaperPrinter-jar-with-dependencies.jar__
   

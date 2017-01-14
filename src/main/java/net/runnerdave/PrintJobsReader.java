@@ -13,7 +13,7 @@ import java.util.List;
  * Created by runnerdave on 14/01/17.
  */
 public class PrintJobsReader {
-    final static Logger logger = Logger.getLogger(PrintJobsReader.class);
+    private final static Logger logger = Logger.getLogger(PrintJobsReader.class);
 
     private String fileLocation;
 
@@ -22,11 +22,11 @@ public class PrintJobsReader {
         System.out.println("Reading jobs from: " + fileLocation);
     }
 
-    public List<PrintJob> loadPrintJobs() {
-        String line = "";
-        List<PrintJob> jobs = new ArrayList<PrintJob>();
+    List<PrintJob> loadPrintJobs() {
+        String line;
+        List<PrintJob> jobs = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(this.fileLocation));) {
+        try (BufferedReader br = new BufferedReader(new FileReader(this.fileLocation))) {
             int i = 0;
             while ((line = br.readLine()) != null) {
 
@@ -51,16 +51,17 @@ public class PrintJobsReader {
 
     /**
      * Total number has to be higher or equal to number of colour pages. Line
-     * has to have 3 elements. First and second elements have to be integers.
+     * has to have at least 3 elements.
+     * First and second elements have to be integers.
      * Last element has to be parseable as boolean.
      *
-     * @param line
-     * @return boolean
+     * @param line line read from the file
+     * @return boolean true if line is valid
      */
     private boolean validateLine(String[] line) {
         boolean isValid = false;
 
-        if (line.length == 3 && isPositiveInteger(line[0]) && isPositiveInteger(line[1]) && isBoolean(line[2])
+        if (line.length >= 3 && isPositiveInteger(line[0]) && isPositiveInteger(line[1]) && isBoolean(line[2])
                 && (Integer.parseInt(line[0]) >= Integer.parseInt(line[1]))) {
             isValid = true;
         }
@@ -71,17 +72,13 @@ public class PrintJobsReader {
     /**
      * test if positive integer
      *
-     * @param str
+     * @param str input to test for positive integer
      * @return true if value is integer and positive
      */
     private boolean isPositiveInteger(String str) {
         try {
             int i = Integer.parseInt(str);
-            if (i >= 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return i >= 0;
 
         } catch (NumberFormatException nfe) {
             return false;
@@ -91,7 +88,7 @@ public class PrintJobsReader {
     /**
      * test if parseable as boolean.
      *
-     * @param str
+     * @param str the input to test as boolean
      * @return true is value is parseable as boolean.
      */
     private boolean isBoolean(String str) {
