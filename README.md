@@ -21,15 +21,19 @@ The application should:
   * Output the total cost of all jobs
   
 #Solution
-  Implementation of Static Factory Method to print different types paper depending on prices for each kind.
+  Implementation of *Static Factory Method* to print different cases of prints depending on the prices for single and double
+  sided and colour needs.
   
   Does not allow to print a one page as double side, it defaults to single side.
   
-  To extend the solution to other sizes modify PrintJobFactry create method to receive the new size from
+  To extend the solution to other sizes modify PrintJobFactory *create* method to receive the new size from
   the PaperSize enumeration and edit the PrintJobsReader to accept a new column per row from the input file.
     
 #Build
   With maven installed simply run: __mvn clean package__
+  
+#Test
+  With maven installed simply run: __mvn clean test__
   
 #Run
   run the following command: __java -jar target/PaperPrinter-jar-with-dependencies.jar__
