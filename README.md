@@ -26,8 +26,8 @@ The application should:
   
   Does not allow to print a one page as double side, it defaults to single side.
   
-  To extend the solution to other sizes modify PrintJobFactory *create* method to receive the new size from
-  the PaperSize enumeration and edit the PrintJobsReader to accept a new column per row from the input file.
+  To extend the solution to other sizes modify _PrintJobFactory_ *create* method to receive the new size from
+  the _PaperSize enumeration_ (currently contains paper from **A0** to **A5**)and edit the _PrintJobsReader_ to accept a new column per row from the input file.
     
 #Build
   With maven installed simply run: __mvn clean package__
